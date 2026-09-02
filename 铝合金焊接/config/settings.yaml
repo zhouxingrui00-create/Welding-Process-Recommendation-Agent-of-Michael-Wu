@@ -1,0 +1,19 @@
+app:
+  title: "离线铝合金焊接工艺推荐智能体"
+  log_dir: "logs"
+  max_thickness_mm: 100.0
+
+ollama:
+  base_url: "http://127.0.0.1:11434"
+  model: "qwen2.5:7b-instruct-q4_K_M"
+  fallback_model: "qwen2.5:3b-instruct-q4_K_M"
+  timeout_seconds: 90
+
+rag:
+  source_dir: "knowledge/source_docs"
+  index_dir: "vector_db"
+  chunk_size: 700
+  chunk_overlap: 100
+  top_k: 4
+  embedding_dimensions: 384
+
