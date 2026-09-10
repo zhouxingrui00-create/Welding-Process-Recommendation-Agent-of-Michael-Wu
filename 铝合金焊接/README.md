@@ -1,48 +1,4 @@
-# 铝合金焊接工艺推荐智能体
-
-## LLM 调用架构升级
-
-上层 Agent 统一调用 `services/llm/router.py` 中的 `LLMRouter`：联网 API → Ollama → 规则解释。
-本次仅升级模型调用架构，保留原有知识库、推荐规则、解释提示词和数值安全校验，不训练模型。
-
-1. 安装新增依赖：`python -m pip install -r requirements.txt`。
-2. 编辑项目根目录 `.env`（缺失时可复制 `.env.example`），填写：
-
-   ```dotenv
-   LLM_PROVIDER=openai-compatible
-   LLM_BASE_URL=
-   LLM_API_KEY=
-   LLM_MODEL=
-   ```
-
-   Base URL 填写服务商的 API 根地址，保留所需的 `/v1` 等路径前缀，不含 `/chat/completions`。
-   模型名填写服务商提供且账号有权限调用的名称；Key 只放 `.env` 或进程环境变量。
-   `.env` 已被 Git 忽略，程序不在页面展示 Key，也不记录请求头、提示词、响应正文和原始异常。
-   协议采用 [OpenAI Chat Completions](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create)。
-3. 在 `config/model_config.yaml` 设置 cloud / local 模型、连接与读取超时、fallback 策略。
-   进程环境变量优先于 `.env`，非空环境配置优先于 YAML。API Key 不从 YAML 读取。
-   `fallback.enabled: true` 配合 `strategy: cloud_then_local` 启用云端失败后转本地；关闭后云端失败直接用规则解释。
-   `LLM_PROVIDER=ollama` 可显式指定仅调用本地。无论策略如何，两端不可用均显示“AI解释模块不可用”，继续规则推荐。
-4. 启动 `streamlit run app.py`，进入侧栏“模型设置”，点击“重新加载配置”，再点击“测试连接”。
-   页面重跑时也会自动应用配置变化；已经生成的结果会保留，需要再次点击“生成焊接工艺推荐”更新解释。
-   测试使用简短中性提示词实际调用两端生成接口；会显示成功/失败、检查时间、响应时间和错误类型。
-   “当前使用模型”表示本会话最近一次推荐调用的模型，连接测试不会覆盖它；首次调用前显示“尚未调用”。
-   本地模型冷启动可适当增大 `timeout.test_seconds`。超时为连接/读取超时，不是端到端总时限。
-   正式云端解释的读取超时为 120 秒。简短连接测试成功不代表完整解释能在相同时间内完成；深度思考模型可能需要几十秒。
-5. 调用日志保存在 `logs/llm-calls-YYYY-MM.jsonl`，每次尝试分别记录模型、提供方、调用时间、操作、成功/失败、耗时和错误分类。
-
-API 网络异常、Key/权限错误、限流、服务异常、无效响应或空文本均触发本地降级。下一次请求重新优先尝试云端。
-原有 `config/settings.yaml` 的 ollama 段仅保留兼容读取，运行时请修改新的 `model_config.yaml`。
-
-验证命令：
-
-```powershell
-python -m pytest -q
-python scripts/check_llm.py
-```
-
-前者执行隔离的客户端、HTTP 协议、fallback、规则回归和页面测试，不需要外部模型。
-后者读取真实配置并调用真实服务；任一服务不可用时退出码为 1。模拟测试通过不代表真实凭据或本地模型已可用。
+# 小型离线铝合金焊接工艺推荐智能体
 
 这是一个面向 Windows 10/11、普通学生电脑和科研初选场景的可运行第一版。用户输入铝合金、状态、板厚、接头、位置和性能偏好后，系统按以下顺序工作：
 
@@ -52,7 +8,7 @@ python scripts/check_llm.py
   → 基础规则引擎
   → 有条件匹配的工艺参数库
   → 本地知识库检索
-  → LLM Router 中文解释（联网 API 优先，Ollama 备用，可选）
+  → Ollama 中文解释（可选）
   → 参数安全检查
   → 页面展示、导出与本地日志
 ```
@@ -70,7 +26,7 @@ python scripts/check_llm.py
 - 激光焊/FSW：当前主要用于方法筛选和知识检索，不提供设备相关的精确参数。
 - RAG：PDF、TXT、Markdown；保留文件名、片段和可抽取的 PDF 页码。
 - 导出：Markdown 和 JSON。
-- 降级：联网 API 失败后自动切换 Ollama；两端都不可用时，规则、数据库、RAG、日志和导出仍可使用。
+- 降级：Ollama 未安装、未启动或模型缺失时，规则、数据库、RAG、日志和导出仍可使用。
 
 ## 项目结构
 
@@ -79,8 +35,7 @@ python scripts/check_llm.py
 ├── app.py                         # Streamlit 中文界面
 ├── requirements.txt
 ├── config/
-│   ├── settings.yaml              # RAG和应用配置
-│   └── model_config.yaml          # 云端、本地模型、超时和fallback策略
+│   └── settings.yaml              # 模型、端口、RAG和应用配置
 ├── agent/
 │   ├── input_normalizer.py        # 输入规范化与校验
 │   ├── models.py                  # 请求/结果数据结构
@@ -95,9 +50,7 @@ python scripts/check_llm.py
 ├── knowledge/source_docs/         # 待检索PDF/TXT/Markdown
 ├── vector_db/                     # 生成的本地哈希向量索引
 ├── scripts/import_knowledge.py
-├── services/                       # 数据、RAG、日志、导出
-│   └── llm/                      # base / api_client / ollama_client / router
-├── pages/1_模型设置.py             # 模型与服务状态、连接测试
+├── services/                       # 数据、RAG、Ollama、日志、导出
 ├── utils/
 ├── logs/                           # 本地JSONL推荐日志
 └── tests/
@@ -184,7 +137,7 @@ ollama pull qwen2.5:7b-instruct-q4_K_M
 ollama pull qwen2.5:3b-instruct-q4_K_M
 ```
 
-然后编辑 [config/model_config.yaml](config/model_config.yaml) 中的 local 段，把：
+然后编辑 [config/settings.yaml](config/settings.yaml)，把：
 
 ```yaml
 model: "qwen2.5:7b-instruct-q4_K_M"
@@ -212,7 +165,7 @@ ollama serve
 ollama list
 ```
 
-默认本地地址为 `http://127.0.0.1:11434`。需要完全离线时，在 `.env` 中设置 `LLM_PROVIDER=ollama`。
+默认本地地址为 `http://127.0.0.1:11434`。项目只访问这个回环地址，不调用 OpenAI、ChatGPT 或其他云端模型。
 
 ## 三、启动应用
 
@@ -373,7 +326,7 @@ PDF 页码按 PDF 内部页面顺序保存。扫描图片型 PDF 没有文本层
 
 ## 十、如何彻底离线运行
 
-规则推荐不需要互联网。设置 `LLM_PROVIDER=ollama` 后，解释也仅调用本地模型。第一次准备依赖和模型可在联网机器完成，然后复制到离线电脑。
+程序运行时本身不需要互联网。第一次准备依赖和模型可在联网机器完成，然后复制到离线电脑。
 
 ### Python 依赖离线包
 
@@ -449,7 +402,7 @@ Ollama 不可用不会使基础推荐失败。
 
 ### 目标模型未安装
 
-执行 `ollama pull <模型名>`，并确保 `config/model_config.yaml` 的 local.model 与 `ollama list` 完全一致。
+执行页面给出的 `ollama pull ...`，并确保 `config/settings.yaml` 的模型名与 `ollama list` 完全一致。
 
 ### 端口 8501 被占用
 

@@ -6,7 +6,7 @@ from agent.models import Recommendation, WeldingRequest
 from agent.rule_engine import RuleEngine
 from agent.safety_checker import ParameterSafetyChecker
 from services.data_service import DataService
-from services.llm.router import LLMRouter
+from services.llm_service import OllamaService
 from services.logging_service import RecommendationLogger
 from services.rag_service import RagService
 
@@ -16,12 +16,12 @@ class WeldingRecommender:
         self,
         data_service: DataService | None = None,
         rag_service: RagService | None = None,
-        llm_service: LLMRouter | None = None,
+        llm_service: OllamaService | None = None,
         logger: RecommendationLogger | None = None,
     ) -> None:
         self.data = data_service or DataService()
         self.rag = rag_service or RagService()
-        self.llm = llm_service or LLMRouter()
+        self.llm = llm_service or OllamaService()
         self.logger = logger or RecommendationLogger()
         self.rules = RuleEngine()
         self.safety = ParameterSafetyChecker()
@@ -133,7 +133,6 @@ class WeldingRecommender:
                 "available": response.available,
                 "model": response.model,
                 "message": response.message,
-                "attempts": response.attempts,
             }
             if response.available:
                 valid, safety_message = self.safety.validate_llm_explanation(response.text)
