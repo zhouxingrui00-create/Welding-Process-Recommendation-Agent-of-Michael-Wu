@@ -3,24 +3,13 @@ from __future__ import annotations
 import streamlit as st
 
 from agent.input_normalizer import normalize_request
-from agent.recommender import WeldingRecommender
 from services.export_service import to_json, to_markdown
-from services.llm_service import OllamaService
+from services.model_session import get_recommender
 from utils.config import load_settings
 
 
 settings = load_settings()
 st.set_page_config(page_title=settings["app"]["title"], page_icon="🧰", layout="wide")
-
-
-@st.cache_resource
-def get_recommender() -> WeldingRecommender:
-    return WeldingRecommender()
-
-
-@st.cache_data(ttl=10, show_spinner=False)
-def get_ollama_status() -> dict:
-    return OllamaService().status()
 
 
 def format_parameter_value(param: dict) -> str:
@@ -33,7 +22,7 @@ def format_parameter_value(param: dict) -> str:
 
 
 st.title(settings["app"]["title"])
-st.caption("完全离线优先 · 规则 + 可追溯数据 + 本地RAG + Ollama解释")
+st.caption("规则 + 可追溯数据 + 本地RAG · 联网AI解释 + Ollama备用")
 st.warning("本软件仅用于学习、科研和工艺初选，不替代正式 WPS/PQR、焊接工艺评定、工程规范或持证工程师审核。")
 
 temper_options = {
@@ -60,19 +49,12 @@ with st.sidebar:
     low_distortion = st.checkbox("特别要求低变形")
     crack_focus = st.checkbox("特别关注裂纹", value=True)
     notes = st.text_area("备注（可选）", max_chars=2000)
-    use_llm = st.checkbox("使用 Ollama 生成解释", value=True, help="关闭后只输出规则解释，其他功能不受影响。")
+    use_llm = st.checkbox("使用 AI 生成解释", value=True, help="优先联网 API，失败后使用 Ollama；关闭后只输出规则解释。")
     submitted = st.button("生成焊接工艺推荐", type="primary", use_container_width=True)
 
-    with st.expander("本地模型状态"):
-        ollama_status = get_ollama_status()
-        if ollama_status["running"] and ollama_status["installed"]:
-            st.success(ollama_status["message"])
-        elif ollama_status["running"]:
-            st.warning(ollama_status["message"])
-            st.code(ollama_status["install_command"], language="powershell")
-        else:
-            st.info("Ollama 当前不可用；规则推荐仍可正常运行。")
-        st.caption(ollama_status["hardware_advice"])
+    with st.expander("模型状态"):
+        st.caption(f"最近调用模型：{get_recommender().llm.model}")
+        st.page_link("pages/1_模型设置.py", label="模型设置 / 测试连接", icon="⚙️")
 
 if submitted:
     try:
@@ -92,9 +74,10 @@ if submitted:
             },
             max_thickness_mm=float(settings["app"]["max_thickness_mm"]),
         )
-        with st.spinner("正在执行规则筛选、数据库查询、知识检索和本地解释…"):
+        with st.spinner("正在执行规则筛选、数据库查询、知识检索和AI解释…"):
             recommendation = get_recommender().recommend(request, use_llm=use_llm)
         st.session_state["recommendation"] = recommendation.to_dict()
+        st.session_state["_model_config_changed"] = False
     except (ValueError, LookupError) as exc:
         st.error(str(exc))
     except Exception as exc:  # 页面必须可降级，并给出可诊断信息
@@ -102,7 +85,7 @@ if submitted:
 
 result = st.session_state.get("recommendation")
 if not result:
-    st.info("请在左侧填写条件并生成推荐。Ollama 不可用时，规则、数据库、RAG和导出仍可工作。")
+    st.info("请在左侧填写条件并生成推荐。AI 模型不可用时，规则、数据库、RAG和导出仍可工作。")
 else:
     request = result["request"]
     material = result["material"]
@@ -129,11 +112,17 @@ else:
             st.write(f"推荐原因：{method_result['reason']}")
 
         st.subheader("工艺解释")
+        if st.session_state.get("_model_config_changed"):
+            st.info("模型配置已更新。以下仍是上次生成的结果，请点击左侧“生成焊接工艺推荐”重新生成解释。")
         st.write(result["explanation"])
         if result["llm_status"]["available"]:
-            st.caption(f"解释由本机 Ollama 模型 {result['llm_status']['model']} 整理；结构化参数未由模型生成。")
+            st.caption(f"解释由模型 {result['llm_status']['model']} 整理；结构化参数未由模型生成。")
         else:
             st.info(f"当前使用规则解释：{result['llm_status']['message']}")
+            for attempt in result["llm_status"].get("attempts", []):
+                if not attempt["available"]:
+                    provider = "联网 API" if attempt["provider"] == "openai-compatible" else "Ollama"
+                    st.caption(f"{provider}（{attempt['model']}）：{attempt['message']} 耗时 {attempt['elapsed_ms'] / 1000:.1f} 秒。")
 
         if result["notices"]:
             st.subheader("数据与系统提示")

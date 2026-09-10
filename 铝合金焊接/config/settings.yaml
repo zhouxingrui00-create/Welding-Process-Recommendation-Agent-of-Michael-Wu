@@ -3,6 +3,7 @@ app:
   log_dir: "logs"
   max_thickness_mm: 100.0
 
+# 仅为旧配置读取方保留；运行时模型配置已迁移至 model_config.yaml。
 ollama:
   base_url: "http://127.0.0.1:11434"
   model: "qwen2.5:7b-instruct-q4_K_M"
@@ -16,4 +17,3 @@ rag:
   chunk_overlap: 100
   top_k: 4
   embedding_dimensions: 384
-
