@@ -1,0 +1,19 @@
+# 云端采用 OpenAI-compatible Chat Completions 协议。
+# .env / 进程环境中的非空配置优先，API Key 只从环境或 .env 读取。
+cloud:
+  provider: openai-compatible
+  base_url: ""
+  model: ""
+local:
+  base_url: "http://127.0.0.1:11434"
+  model: "qwen2.5:7b-instruct-q4_K_M"
+timeout:
+  connect_seconds: 3
+  # 深度思考模型生成完整解释可能超过 30 秒；短连接测试仍独立限时。
+  cloud_seconds: 180
+  local_seconds: 120
+  test_seconds: 15
+fallback:
+  enabled: true
+  strategy: cloud_then_local
+  # 无论 enabled 如何设置，模型全部失败后始终保留规则推荐。
