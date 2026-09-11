@@ -5,6 +5,7 @@ from functools import lru_cache
 from typing import Any
 
 from agent.models import WeldingRequest
+from services.material_manager import MaterialManager
 from utils.paths import project_path
 
 
@@ -15,7 +16,8 @@ def _load_json(relative_path: str) -> dict[str, Any]:
 
 
 class DataService:
-    def __init__(self) -> None:
+    def __init__(self, material_manager: MaterialManager | None = None) -> None:
+        self.material_manager = material_manager or MaterialManager()
         self.material_db = _load_json("data/materials/materials.json")
         self.process_db = _load_json("data/processes/process_parameters.json")
 
@@ -28,6 +30,24 @@ class DataService:
         return self.process_db["sources"]
 
     def get_material(self, request: WeldingRequest) -> dict[str, Any]:
+        if request.alloy == "6A01":
+            summary = self.material_manager.get_summary(request.alloy)
+            # Adapter for the existing rule/display contract. Unknowns stay explicit;
+            # no 6061 filler, risk rating, strength or process row is copied here.
+            return {
+                "alloy": "6A01", "series": "6xxx", "alloy_system": "专项资料待补充",
+                "strengthening": "专项资料待补充", "weldability": "专项结论待补充；现阶段仅提供基础规则初选。",
+                "fusion_risk_level": "未知", "primary_risks": [], "filler_options": [], "source_ids": [],
+                "supported_tempers": summary["tempers"],
+                "temper_warning": "6A01 专项数据库尚未形成已验证工艺；未知状态、性能与缺陷不作推定。",
+                "specialized_data": summary,
+                "data_priority": self.material_manager.get_priority(request.alloy),
+                "related_cases": self.material_manager.get_welding_cases(
+                    request.alloy, None if request.temper == "未知" else request.temper,
+                    None if request.preferred_method == "自动推荐" else request.preferred_method,
+                    request.thickness_mm,
+                ),
+            }
         for item in self.material_db["materials"]:
             if item["alloy"] == request.alloy:
                 result = dict(item)
@@ -79,6 +99,9 @@ class DataService:
     def get_process_parameters(
         self, method: str, request: WeldingRequest, filler: dict[str, Any] | None
     ) -> tuple[list[dict[str, Any]], list[str]]:
+        if request.alloy == "6A01":
+            # This phase only reads cases; it does not approve or convert them to WPS.
+            return [], []
         matched = []
         for record in self.process_db["records"]:
             if record["method"] != method:
@@ -117,4 +140,3 @@ class DataService:
                 "note": filler.get("note", ""),
             }
         return list(parameters.values()), sorted(set(conflicts))
-

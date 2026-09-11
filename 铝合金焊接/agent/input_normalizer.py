@@ -22,9 +22,9 @@ TEMPER_ALIASES = {
 
 def split_material_designation(value: str) -> tuple[str, str | None]:
     cleaned = value.strip().upper().replace("—", "-").replace("－", "-")
-    match = re.fullmatch(r"(\d{4})(?:-?([A-Z]\d*))?", cleaned)
+    match = re.fullmatch(r"(\d[A-Z0-9]{3})(?:-?([A-Z]\d*))?", cleaned)
     if not match:
-        raise ValueError("材料牌号格式无效，应类似 6061 或 6061-T6。")
+        raise ValueError("材料牌号格式无效，应类似 6061、6A01 或 6A01-T6。")
     return match.group(1), match.group(2)
 
 
@@ -39,6 +39,8 @@ def normalize_request(payload: dict[str, Any], max_thickness_mm: float = 100.0) 
 
     if alloy not in SUPPORTED_ALLOYS:
         raise ValueError(f"当前演示库暂不支持 {alloy}。")
+    if not temper and alloy == "6A01":
+        temper = "未知"
     if not temper:
         raise ValueError("必须选择材料状态。")
     if not (0 < thickness <= max_thickness_mm):
@@ -67,4 +69,3 @@ def normalize_request(payload: dict[str, Any], max_thickness_mm: float = 100.0) 
         crack_focus=bool(payload.get("crack_focus", False)),
         notes=str(payload.get("notes", "")).strip()[:2000],
     )
-

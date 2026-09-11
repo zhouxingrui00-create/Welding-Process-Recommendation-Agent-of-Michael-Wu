@@ -103,7 +103,20 @@ class WeldingRecommender:
             f"铝合金 {request.material_id} {request.thickness_mm:g} mm {request.joint_type} "
             f"{method['primary']} 焊接性 热裂纹 气孔 软化 变形"
         )
-        knowledge = self.rag.search(query)
+        if request.alloy == "6A01":
+            manager = self.data.material_manager
+            dedicated = manager.get_knowledge(
+                request.alloy, None if request.temper == "未知" else request.temper,
+                method["primary"], request.thickness_mm,
+            )
+            retrieved = self.rag.search(query, material_priority="6A01")
+            knowledge = sorted(dedicated + retrieved, key=lambda item: item["priority"])
+            notices.append("资料优先级：6A01 专项数据库 → 6xxx 系列 → 通用铝合金知识；回退资料不能视为 6A01 实验结论。")
+            notices.extend(manager.warnings)
+            if not any(item["priority"] == 0 for item in knowledge):
+                notices.append("当前条件没有匹配的 6A01 专项资料，已回退到系列 / 通用知识。")
+        else:
+            knowledge = self.rag.search(query)
         conflicts.extend(self.rag.detect_potential_conflicts(knowledge))
         conflicts = sorted(set(conflicts))
         risks = self._risk_items(request, material)
@@ -128,6 +141,16 @@ class WeldingRecommender:
                 ],
                 "required_conclusion": "所有参数需试焊和WPS/PQR验证。",
             }
+            if request.alloy == "6A01":
+                llm_context["material"]["data_status"] = (
+                    "6A01 专项模块仅供资料查询；无已验证工艺、无已训练预测模型。"
+                    "系列和通用资料不得描述为该牌号实验结果；来源缺失项不得视为可靠结论。"
+                )
+                llm_context["knowledge"] = [
+                    {"source": item["source"], "page": item.get("page"),
+                     "material_scope": item["material_scope"], "text": item["text"]}
+                    for item in knowledge
+                ]
             response = self.llm.explain(llm_context)
             llm_status = {
                 "available": response.available,

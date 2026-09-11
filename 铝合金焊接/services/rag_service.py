@@ -115,19 +115,39 @@ class RagService:
             self.build_index()
         return json.loads(self.index_path.read_text(encoding="utf-8"))
 
-    def search(self, query: str, top_k: int | None = None) -> list[dict[str, Any]]:
+    def search(self, query: str, top_k: int | None = None,
+               material_priority: str | None = None) -> list[dict[str, Any]]:
         index = self._load_index()
         query_vector = hash_embed(query, int(index["dimensions"]))
         scored: list[dict[str, Any]] = []
         for record in index["records"]:
+            scope = self._material_scope(record, material_priority) if material_priority else None
+            if material_priority and scope is None:
+                continue
             score = sum(left * right for left, right in zip(query_vector, record["vector"]))
             if score <= 0:
                 continue
             item = {key: value for key, value in record.items() if key != "vector"}
             item["score"] = round(score, 4)
+            if scope is not None:
+                item["priority"], item["material_scope"] = scope
             scored.append(item)
-        scored.sort(key=lambda item: item["score"], reverse=True)
+        scored.sort(key=lambda item: (item.get("priority", 0), -item["score"]))
         return scored[: top_k or self.top_k]
+
+    @staticmethod
+    def _material_scope(record: dict[str, Any], alloy: str) -> tuple[int, str] | None:
+        alloy = alloy.upper()
+        text = f"{record.get('source', '')} {record.get('text', '')}".upper()
+        if re.search(rf"(?<![A-Z0-9]){re.escape(alloy)}(?![A-Z0-9])", text):
+            return 0, alloy
+        series = f"{alloy[0]}xxx"
+        if series.upper() in text or f"{alloy[0]}系" in text:
+            return 1, series
+        # Explicitly different grades/series are not generic fallback knowledge.
+        if re.search(r"(?<![A-Z0-9])[1-8](?:\d{3}|[A-Z]\d{2}|XXX)(?![A-Z0-9])", text):
+            return None
+        return 2, "通用铝合金"
 
     @staticmethod
     def detect_potential_conflicts(results: list[dict[str, Any]]) -> list[str]:

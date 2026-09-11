@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass, field
 from typing import Any
 
 
-SUPPORTED_ALLOYS = ("6061", "6063", "5083", "5052", "2024", "7075")
+SUPPORTED_ALLOYS = ("6061", "6063", "5083", "5052", "2024", "7075", "6A01")
 SUPPORTED_JOINTS = ("对接", "搭接", "T形接头", "角接")
 SUPPORTED_POSITIONS = ("平焊", "横焊", "立焊", "仰焊")
 SUPPORTED_METHODS = ("自动推荐", "TIG", "MIG", "激光焊", "FSW")
@@ -48,4 +48,3 @@ class Recommendation:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
-

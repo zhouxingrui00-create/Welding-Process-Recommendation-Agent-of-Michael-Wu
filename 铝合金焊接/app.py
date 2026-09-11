@@ -5,6 +5,7 @@ import streamlit as st
 from agent.input_normalizer import normalize_request
 from services.export_service import to_json, to_markdown
 from services.model_session import get_recommender
+from services.material_manager import MaterialManager
 from utils.config import load_settings
 
 
@@ -32,12 +33,19 @@ temper_options = {
     "5052": ["H32", "H34", "O", "H系列"],
     "2024": ["T3", "T4"],
     "7075": ["T6", "T651"],
+    "6A01": ["未知"],
 }
 
 with st.sidebar:
     st.header("材料与焊接条件")
     alloy = st.selectbox("铝合金牌号", list(temper_options))
-    temper = st.selectbox("材料状态", temper_options[alloy])
+    if alloy == "6A01":
+        available_tempers = MaterialManager().get_tempers(alloy)
+        temper = st.text_input("材料状态（可留空）", help="按实际材料填写；留空表示未知，不推定为 T6。")
+        if available_tempers:
+            st.caption("已收录状态：" + "、".join(available_tempers))
+    else:
+        temper = st.selectbox("材料状态", temper_options[alloy])
     thickness = st.number_input(
         "板厚 (mm)", min_value=0.1, max_value=float(settings["app"]["max_thickness_mm"]), value=3.0, step=0.1
     )
@@ -55,6 +63,7 @@ with st.sidebar:
     with st.expander("模型状态"):
         st.caption(f"最近调用模型：{get_recommender().llm.model}")
         st.page_link("pages/1_模型设置.py", label="模型设置 / 测试连接", icon="⚙️")
+    st.page_link("pages/2_6A01专项分析.py", label="6A01专项分析")
 
 if submitted:
     try:
@@ -112,6 +121,11 @@ else:
             st.write(f"推荐原因：{method_result['reason']}")
 
         st.subheader("工艺解释")
+        if material.get("specialized_data"):
+            st.caption("资料查询优先级：" + " → ".join(material["data_priority"]))
+            with st.expander("6A01 专项材料资料与相关案例"):
+                st.json(material["specialized_data"])
+                st.json(material["related_cases"])
         if st.session_state.get("_model_config_changed"):
             st.info("模型配置已更新。以下仍是上次生成的结果，请点击左侧“生成焊接工艺推荐”重新生成解释。")
         st.write(result["explanation"])
@@ -185,4 +199,6 @@ else:
         for index, item in enumerate(result["knowledge"], start=1):
             page = f" · 第 {item['page']} 页" if item.get("page") else ""
             st.markdown(f"**{index}. {item['source']}{page} · 相关度 {item['score']:.3f}**")
+            if item.get("material_scope"):
+                st.caption(f"资料层级：{item['material_scope']}")
             st.write(item["text"])

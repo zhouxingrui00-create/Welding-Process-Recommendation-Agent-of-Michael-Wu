@@ -6,6 +6,39 @@ import requests
 from streamlit.testing.v1 import AppTest
 
 
+def test_6a01_page_starts_empty_and_navigation_preserves_result(monkeypatch):
+    monkeypatch.setattr(requests, "post", Mock(side_effect=requests.ConnectionError()))
+    app_path = Path(__file__).resolve().parents[1] / "app.py"
+    app = AppTest.from_file(str(app_path), default_timeout=10).run()
+    next(box for box in app.selectbox if box.label == "铝合金牌号").select("6A01").run()
+    next(box for box in app.checkbox if box.label == "使用 AI 生成解释").uncheck().run()
+    app.button[0].click().run()
+    assert not app.exception
+    original = app.session_state["recommendation"]
+    assert original["request"]["temper"] == "未知"
+    assert original["parameters"] == []
+    app.switch_page("pages/2_6A01专项分析.py").run()
+    assert not app.exception
+    assert app.title[0].value == "6A01专项分析"
+    assert [metric.value for metric in app.metric] == ["0", "0", "0"]
+    assert any("暂无 6A01" in item.value for item in app.info)
+    app.button[0].click().run()
+    assert not app.exception
+    app.switch_page("app.py").run()
+    assert not app.exception
+    assert app.session_state["recommendation"] == original
+
+
+def test_6a01_page_starts_with_missing_database(monkeypatch, tmp_path):
+    from services.material_manager import MaterialManager
+    monkeypatch.setattr("services.material_manager.MaterialManager", lambda: MaterialManager(tmp_path))
+    path = Path(__file__).resolve().parents[1] / "app.py"
+    app = AppTest.from_file(str(path), default_timeout=10).run()
+    app.switch_page("pages/2_6A01专项分析.py").run()
+    assert not app.exception
+    assert [metric.value for metric in app.metric] == ["0", "0", "0"]
+
+
 def test_streamlit_app_starts_without_exception(monkeypatch) -> None:
     monkeypatch.setattr(requests, "post", Mock(side_effect=requests.ConnectionError()))
     app_path = Path(__file__).resolve().parents[1] / "app.py"

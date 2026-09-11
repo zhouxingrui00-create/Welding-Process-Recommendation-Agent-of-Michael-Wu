@@ -10,8 +10,8 @@ local:
 timeout:
   connect_seconds: 3
   # 深度思考模型生成完整解释可能超过 30 秒；短连接测试仍独立限时。
-  cloud_seconds: 120
-  local_seconds: 90
+  cloud_seconds: 180
+  local_seconds: 120
   test_seconds: 15
 fallback:
   enabled: true

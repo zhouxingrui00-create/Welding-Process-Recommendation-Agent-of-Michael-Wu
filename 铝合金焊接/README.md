@@ -1,5 +1,77 @@
 # 铝合金焊接工艺推荐智能体
 
+## 6A01 专项材料模块
+
+本阶段只建立数据结构、读取接口和页面。**6A01 性能记录、焊接案例、文献记录均为空，没有新增实验数值，也没有训练预测模型。** 原有 `materials.json` 和工艺参数种子库保留，6061、6063、5083、5052、2024、7075 继续使用原有路径。
+
+启动 `python -m streamlit run app.py`，侧栏进入 **6A01专项分析**，可以查看材料信息、三类记录数量、已有资料涉及的方法、模型状态和原始资料。在主页面选择 6A01 后，可填写实际材料状态，也可留空表示未知。
+
+### 文件结构与字段
+
+```text
+data/materials/
+├── materials.json          # 原有材料种子库
+└── 6A01/
+    ├── material.json       # 牌号信息与材料档案
+    ├── properties.json     # 母材/接头性能与组织记录
+    ├── welding_cases.json  # 实际焊接实验案例
+    └── literature.json     # 文献条目与可追溯摘要
+```
+
+`material.json` 是单个对象。其余三个文件使用 `{"schema_version": "1.0", "record_template": {...}, "records": []}` 格式。`record_template` 是空字段说明，不参与查询或计数；真实资料写入 `records` 数组。所有业务字段可省略或设为 `null`，集合也可为 `null` 或空数组。不要用 `0` 代替缺失的实测值。
+
+| 字段 | 含义及填写约定 |
+| --- | --- |
+| `id` | 本地唯一记录编号，建议填写，便于追溯 |
+| `alloy` | 材料牌号；本目录为 6A01，允许为空；显式填写其他牌号的集合记录会跳过并提示 |
+| `temper` | 原始材料状态，未知时为 null，不自动填 T6 |
+| `chemical_composition` | 成分对象：按元素保存原始值、单位、测定/标准依据，未知为 null |
+| `thickness_mm` | 真实厚度，数值，单位 mm；未知为 null |
+| `welding_method` | 方法名称；如 TIG、MIG、激光焊、FSW，也可填其他名称 |
+| `welding_parameters` | 参数对象或数组；各项保留名称、值、单位、设备和适用条件 |
+| `microstructure` | 组织描述或对象，可附区域、观察方法、图像路径 |
+| `mechanical_properties` | 性能对象或数组，保留试验项目、值、单位、试样位置、试验条件 |
+| `defects` | 缺陷描述或对象，保留类型、位置、检测方法；null 表示未知，不表示无缺陷 |
+| `source` | 来源对象，可包含 title、authors、year、url、doi、report_id、page、file_path、note |
+
+`material.json` 另预留 `series`、`supported_tempers` 和 `supported_welding_methods`；仅填写有资料支持的内容。`literature.json` 另预留 `title`、`summary`。嵌套对象允许逐项为 null，扩展字段会保留。读取器负责容错与查询，不替代成分、单位或实验真实性审核。
+
+### 未来如何导入真实 6A01 数据
+
+1. 整理原始试验记录、报告或文献，确认材料牌号和各字段来源。
+2. 选择对应 JSON 文件，把其中 `record_template` 复制为 `records` 的一个对象，按原始资料填写；没有的数据保持 null。模板本身留在 `record_template` 中，不要把空模板批量加入 `records`。
+3. 母材和接头的性能可分别作为 `properties` 记录，用扩展字段注明试样区域。每次真实焊接实验保存为独立 `welding_cases` 记录；文献摘要保存到 `literature`。相关条目可用自定义 `case_id`、`literature_id` 关联，读取器会保留这些字段。
+4. 在 `source` 中保存报告编号、页码、DOI 或原文位置。来源缺失也能读取，但查询上下文会标记“来源待补充”。不要把 LLM 生成内容填写成实验结论。
+5. 以 UTF-8 保存有效 JSON；大量导入时，外部整理脚本也只需生成同样的 `records` 数组。建议先备份，再用 `python -m json.tool data/materials/6A01/welding_cases.json` 检查语法。
+6. 页面点击“重新读取材料数据”，核对数量、状态、方法和原始记录。读取不使用永久缓存，无需重建向量索引；主页面已有推荐保持原样，点击“生成焊接工艺推荐”后才更新。
+
+空文件、缺失文件、顶层 null 均按空数据读取；非法 JSON 或结构不符会提示并跳过，不会自动覆盖原文件。完全空的模板和只有 id/alloy 的占位条目不计数；已填写的条目数不等于已审核样本数。指定状态、方法或厚度筛选时，未知字段不视为匹配，厚度采用精确匹配，不做邻近厚度外推。
+
+### 统一查询接口与优先级
+
+```python
+from services.material_manager import MaterialManager
+
+manager = MaterialManager()
+manager.list_materials()
+manager.get_material("6A01")
+manager.get_tempers("6A01")
+manager.get_welding_methods("6A01")
+manager.get_welding_cases("6A01")
+manager.get_properties("6A01")
+manager.get_literature("6A01")
+manager.get_summary("6A01")
+manager.get_priority("6A01")  # ["6A01", "6xxx", "通用铝合金"]
+# get_welding_cases 可选参数：temper、welding_method、thickness_mm。
+# 传入真实条件即可筛选；不传条件则返回所有已填写记录。
+```
+
+推荐时先读取 6A01 专项档案、匹配的性能与案例及文献，再按 **6A01 → 6xxx → 通用铝合金** 排序本地知识；页面与解释上下文明确保留资料层级。6xxx 回退使用已有系列知识片段，不复制 6061 的具体参数或性能。只适用于其他牌号的知识片段不会作为 6A01 通用资料召回。
+
+当前案例仅用于查询、原文展示和参考上下文，**不会自动转成工艺参数或模型训练数据**。6A01 工艺参数表保持为空，方法建议仍是基础规则初选；今后开放参数推荐需要单独建立来源、条件、审核与参数安全校验映射。未来预测继续预留 `agent/ml_interface.py` 的 `ProcessPredictionModel` 接口，专项页面如实显示“未训练 / 未接入”。
+
+验证：`python -m pytest -q`。专项测试使用临时目录中的空值和路由元数据，不向材料库写入模拟实验；覆盖空库/缺失文件、字段空值、异常 JSON、即时重读、输入解析、优先级、原有材料及 Streamlit 跨页运行。
+
 ## LLM 调用架构升级
 
 上层 Agent 统一调用 `services/llm/router.py` 中的 `LLMRouter`：联网 API → Ollama → 规则解释。
@@ -28,7 +100,7 @@
    测试使用简短中性提示词实际调用两端生成接口；会显示成功/失败、检查时间、响应时间和错误类型。
    “当前使用模型”表示本会话最近一次推荐调用的模型，连接测试不会覆盖它；首次调用前显示“尚未调用”。
    本地模型冷启动可适当增大 `timeout.test_seconds`。超时为连接/读取超时，不是端到端总时限。
-   正式云端解释的读取超时为 120 秒。简短连接测试成功不代表完整解释能在相同时间内完成；深度思考模型可能需要几十秒。
+   正式云端解释的读取超时为 180 秒。简短连接测试成功不代表完整解释能在相同时间内完成；深度思考模型可能需要几十秒。
 5. 调用日志保存在 `logs/llm-calls-YYYY-MM.jsonl`，每次尝试分别记录模型、提供方、调用时间、操作、成功/失败、耗时和错误分类。
 
 API 网络异常、Key/权限错误、限流、服务异常、无效响应或空文本均触发本地降级。下一次请求重新优先尝试云端。
