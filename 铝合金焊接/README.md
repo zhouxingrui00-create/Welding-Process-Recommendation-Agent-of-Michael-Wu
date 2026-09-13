@@ -586,7 +586,21 @@ python scripts\import_knowledge.py
 
 厂商表中的少量数值只在数据库明确限定的厚度、接头和位置条件下出现，并标为“示例数据”。种子库不是完整标准数据库，也没有覆盖材料批次、设备波形、坡口尺寸、装配间隙、环境和全部检测要求。
 
-## 十四、后续扩展建议
+## 十四、科研数据管理框架（当前阶段）
+
+新增侧边栏 **科研数据管理**：支持 CSV、Excel（XLSX/XLS）、JSON 导入，17 个核心实验字段、单位校验、缺失/重复/异常检查、SQLite 事务版本管理，以及数据量、字段完整度、材料/焊接方法分布和历史版本查看。
+
+详见 [data_manager 使用说明](data_manager/README.md)。默认仓库位于 `data/research/`；正式记录和 Demo 测试占位记录分开。空白模板可在页面下载。不会自动导入旧草稿，不训练模型、不预测、不优化，不生成实验测量数据。
+
+实际 Demo 导入命令：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\import_dataset.py data\templates\demo_schema_only.csv --dataset demo
+```
+
+Demo 只有一条无测量值的结构测试记录，重复导入会被拦截。检查而不写入时增加 `--dry-run`；完整验收结果见 [DATA_MANAGER_TEST_REPORT.md](DATA_MANAGER_TEST_REPORT.md)。
+
+## 十五、后续扩展建议（不属于当前数据基础设施阶段）
 
 保持第一版稳定后，再按真实研究需求逐步增加：
 
