@@ -1,0 +1,2 @@
+alloy,temper,thickness,process,current,voltage,speed,heat_input,tensile_strength,hardness,elongation,porosity,crack,undercut,paper,experiment_id,source,record_kind
+6A01,,,,,,,,,,,,,,,DEMO-SCHEMA-001,demo_placeholder_no_measurements,schema_test

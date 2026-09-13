@@ -1,0 +1,942 @@
+{
+  "schema_version": "1.0",
+  "record_template": {
+    "id": null,
+    "alloy": null,
+    "temper": null,
+    "chemical_composition": null,
+    "thickness_mm": null,
+    "welding_method": null,
+    "welding_parameters": null,
+    "microstructure": null,
+    "mechanical_properties": null,
+    "defects": null,
+    "source": {
+      "title": null,
+      "authors": null,
+      "year": null,
+      "url": null,
+      "doi": null,
+      "report_id": null,
+      "page": null,
+      "file_path": null,
+      "note": null
+    }
+  },
+  "import_status": "review_only_not_loaded_by_app",
+  "records": [
+    {
+      "id": "6A01-demo-case-001",
+      "alloy": "6A01",
+      "temper": "T5",
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": "MIG",
+      "welding_parameters": {
+        "wire_diameter": null,
+        "laser_power": null,
+        "arc_current": null,
+        "wire_feed_speed": null,
+        "welding_speed": null,
+        "gap": null,
+        "filler_material": {
+          "value": "ER5356",
+          "unit": null,
+          "source_cell": "6A01_demo_dataset!G2"
+        },
+        "shielding_gas": null
+      },
+      "microstructure": null,
+      "mechanical_properties": {
+        "tensile_strength": {
+          "value": 210.3,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!O2",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "fatigue_strength": {
+          "value": 61.7,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!P2",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "test_conditions": {
+          "standard": null,
+          "stress_ratio": null,
+          "cycles": null,
+          "sample_count": null,
+          "loading_mode": null
+        }
+      },
+      "defects": null,
+      "source": {
+        "title": "Microstructures and fatigue behavior of metal-inert-gas-welded joints for extruded Al-Mg-Si alloy",
+        "authors": null,
+        "year": 2019,
+        "url": "https://doi.org/10.1016/j.msea.2018.12.080",
+        "doi": "10.1016/j.msea.2018.12.080",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 2,
+        "range": "A2:U2",
+        "metadata_source_url": "https://www.sciencedirect.com/science/article/abs/pii/S092150931831757X",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "literature_id": "6A01-demo-literature-480f23db3025",
+      "record_kind": "paper_measurement_summary",
+      "data_type": "Paper: measured",
+      "example_data": false,
+      "joint": {
+        "description": "6A01/6A01"
+      },
+      "raw_record": {
+        "ID": 1,
+        "Alloy": "6A01",
+        "Temper": "T5",
+        "Process": "MIG",
+        "Joint / Other material": "6A01/6A01",
+        "Thickness_6A01_mm": null,
+        "Filler": "ER5356",
+        "Filler_diameter_mm": null,
+        "Laser_power_kW": null,
+        "Arc_current_A": null,
+        "Wire_feed_m_min": null,
+        "Welding_speed_m_min": null,
+        "Gap_mm": null,
+        "Shielding_gas": null,
+        "Tensile_strength_MPa": 210.3,
+        "Fatigue_strength_MPa": 61.7,
+        "Weld_depth_mm": null,
+        "Other_outcome": "Joint efficiency ≈76.5%; fracture at minimum-hardness HAZ",
+        "Data_type": "Paper: measured",
+        "Source_DOI_or_URL": "https://doi.org/10.1016/j.msea.2018.12.080",
+        "Notes": "Paper states welding parameters are in Table 2, but searchable text did not expose the table values; kept unknown rather than guessed."
+      },
+      "source_cells": {
+        "ID": "6A01_demo_dataset!A2",
+        "Alloy": "6A01_demo_dataset!B2",
+        "Temper": "6A01_demo_dataset!C2",
+        "Process": "6A01_demo_dataset!D2",
+        "Joint / Other material": "6A01_demo_dataset!E2",
+        "Thickness_6A01_mm": "6A01_demo_dataset!F2",
+        "Filler": "6A01_demo_dataset!G2",
+        "Filler_diameter_mm": "6A01_demo_dataset!H2",
+        "Laser_power_kW": "6A01_demo_dataset!I2",
+        "Arc_current_A": "6A01_demo_dataset!J2",
+        "Wire_feed_m_min": "6A01_demo_dataset!K2",
+        "Welding_speed_m_min": "6A01_demo_dataset!L2",
+        "Gap_mm": "6A01_demo_dataset!M2",
+        "Shielding_gas": "6A01_demo_dataset!N2",
+        "Tensile_strength_MPa": "6A01_demo_dataset!O2",
+        "Fatigue_strength_MPa": "6A01_demo_dataset!P2",
+        "Weld_depth_mm": "6A01_demo_dataset!Q2",
+        "Other_outcome": "6A01_demo_dataset!R2",
+        "Data_type": "6A01_demo_dataset!S2",
+        "Source_DOI_or_URL": "6A01_demo_dataset!T2",
+        "Notes": "6A01_demo_dataset!U2"
+      },
+      "notes": "Paper states welding parameters are in Table 2, but searchable text did not expose the table values; kept unknown rather than guessed.",
+      "other_outcome": "Joint efficiency ≈76.5%; fracture at minimum-hardness HAZ",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "geometry_results": {
+        "penetration_depth": null
+      },
+      "fracture_information": {
+        "location": "minimum-hardness HAZ",
+        "source_cell": "6A01_demo_dataset!R2"
+      },
+      "property_record_id": "6A01-demo-property-001"
+    },
+    {
+      "id": "6A01-demo-case-002",
+      "alloy": "6A01",
+      "temper": "T5",
+      "chemical_composition": null,
+      "thickness_mm": 3,
+      "welding_method": "Laser-MIG hybrid",
+      "welding_parameters": {
+        "wire_diameter": null,
+        "laser_power": null,
+        "arc_current": null,
+        "wire_feed_speed": null,
+        "welding_speed": null,
+        "gap": null,
+        "filler_material": {
+          "value": "ER5356",
+          "unit": null,
+          "source_cell": "6A01_demo_dataset!G3"
+        },
+        "shielding_gas": null
+      },
+      "microstructure": null,
+      "mechanical_properties": {
+        "tensile_strength": {
+          "value": 197.5,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!O3",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "fatigue_strength": {
+          "value": 93.5,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!P3",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "test_conditions": {
+          "standard": null,
+          "stress_ratio": null,
+          "cycles": null,
+          "sample_count": null,
+          "loading_mode": null
+        }
+      },
+      "defects": null,
+      "source": {
+        "title": "高速列车用铝合金型材激光-MIG复合焊工艺特性和接头性能",
+        "authors": [
+          "马国龙",
+          "张志毅",
+          "毛镇东",
+          "李刚卿",
+          "韩晓辉",
+          "杨志斌"
+        ],
+        "year": 2023,
+        "url": "https://doi.org/10.11896/cldb.21110142",
+        "doi": "10.11896/cldb.21110142",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 3,
+        "range": "A3:U3",
+        "metadata_source_url": "https://www.mater-rep.com/CN/10.11896/cldb.21110142",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "literature_id": "6A01-demo-literature-a1c25132b982",
+      "record_kind": "paper_measurement_summary",
+      "data_type": "Paper: measured",
+      "example_data": false,
+      "joint": {
+        "description": "6A01/6A01"
+      },
+      "raw_record": {
+        "ID": 2,
+        "Alloy": "6A01",
+        "Temper": "T5",
+        "Process": "Laser-MIG hybrid",
+        "Joint / Other material": "6A01/6A01",
+        "Thickness_6A01_mm": 3,
+        "Filler": "ER5356",
+        "Filler_diameter_mm": null,
+        "Laser_power_kW": null,
+        "Arc_current_A": null,
+        "Wire_feed_m_min": null,
+        "Welding_speed_m_min": null,
+        "Gap_mm": null,
+        "Shielding_gas": null,
+        "Tensile_strength_MPa": 197.5,
+        "Fatigue_strength_MPa": 93.5,
+        "Weld_depth_mm": null,
+        "Other_outcome": "HAZ width ≈1.5 mm; fracture in weld; ductile tensile fracture",
+        "Data_type": "Paper: measured",
+        "Source_DOI_or_URL": "https://doi.org/10.11896/cldb.21110142",
+        "Notes": "Representative joint performance reported by the paper; process-variable table should be extracted from full PDF before ML training."
+      },
+      "source_cells": {
+        "ID": "6A01_demo_dataset!A3",
+        "Alloy": "6A01_demo_dataset!B3",
+        "Temper": "6A01_demo_dataset!C3",
+        "Process": "6A01_demo_dataset!D3",
+        "Joint / Other material": "6A01_demo_dataset!E3",
+        "Thickness_6A01_mm": "6A01_demo_dataset!F3",
+        "Filler": "6A01_demo_dataset!G3",
+        "Filler_diameter_mm": "6A01_demo_dataset!H3",
+        "Laser_power_kW": "6A01_demo_dataset!I3",
+        "Arc_current_A": "6A01_demo_dataset!J3",
+        "Wire_feed_m_min": "6A01_demo_dataset!K3",
+        "Welding_speed_m_min": "6A01_demo_dataset!L3",
+        "Gap_mm": "6A01_demo_dataset!M3",
+        "Shielding_gas": "6A01_demo_dataset!N3",
+        "Tensile_strength_MPa": "6A01_demo_dataset!O3",
+        "Fatigue_strength_MPa": "6A01_demo_dataset!P3",
+        "Weld_depth_mm": "6A01_demo_dataset!Q3",
+        "Other_outcome": "6A01_demo_dataset!R3",
+        "Data_type": "6A01_demo_dataset!S3",
+        "Source_DOI_or_URL": "6A01_demo_dataset!T3",
+        "Notes": "6A01_demo_dataset!U3"
+      },
+      "notes": "Representative joint performance reported by the paper; process-variable table should be extracted from full PDF before ML training.",
+      "other_outcome": "HAZ width ≈1.5 mm; fracture in weld; ductile tensile fracture",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "geometry_results": {
+        "penetration_depth": null
+      },
+      "fracture_information": {
+        "location": "weld",
+        "description": "HAZ width ≈1.5 mm; fracture in weld; ductile tensile fracture",
+        "source_cell": "6A01_demo_dataset!R3"
+      },
+      "property_record_id": "6A01-demo-property-002"
+    },
+    {
+      "id": "6A01-demo-case-003",
+      "alloy": "6A01",
+      "temper": "T5",
+      "chemical_composition": null,
+      "thickness_mm": 2.5,
+      "welding_method": "Laser-CMT hybrid welding-brazing",
+      "welding_parameters": {
+        "wire_diameter": {
+          "value": 1.2,
+          "unit": "mm",
+          "source_cell": "6A01_demo_dataset!H4",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "laser_power": {
+          "value": 2,
+          "unit": "kW",
+          "source_cell": "6A01_demo_dataset!I4",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "arc_current": null,
+        "wire_feed_speed": {
+          "value": 4.5,
+          "unit": "m/min",
+          "source_cell": "6A01_demo_dataset!K4",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "welding_speed": {
+          "value": 1.2,
+          "unit": "m/min",
+          "source_cell": "6A01_demo_dataset!L4",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "gap": null,
+        "filler_material": {
+          "value": "ER5183",
+          "unit": null,
+          "source_cell": "6A01_demo_dataset!G4"
+        },
+        "shielding_gas": null
+      },
+      "microstructure": null,
+      "mechanical_properties": {
+        "tensile_strength": {
+          "value": 188.7,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!O4",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "fatigue_strength": null,
+        "test_conditions": {
+          "standard": null,
+          "stress_ratio": null,
+          "cycles": null,
+          "sample_count": null,
+          "loading_mode": null
+        }
+      },
+      "defects": null,
+      "source": {
+        "title": "Laser-CMT Hybrid Welding-Brazing of Al/Steel Butt Joint: Weld Formation, Intermetallic Compounds, and Mechanical Properties",
+        "authors": [
+          "Yuxin Chen",
+          "Zhibin Yang",
+          "Chunyuan Shi",
+          "Zhibin Xin",
+          "Zitong Zeng"
+        ],
+        "year": 2019,
+        "url": "https://doi.org/10.3390/ma12223651",
+        "doi": "10.3390/ma12223651",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 4,
+        "range": "A4:U4",
+        "metadata_source_url": "https://www.mdpi.com/1996-1944/12/22/3651/htm",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "literature_id": "6A01-demo-literature-f4f477b01867",
+      "record_kind": "paper_reported_optimum",
+      "data_type": "Paper: measured optimum",
+      "example_data": false,
+      "joint": {
+        "description": "SUS301L-DLT stainless steel"
+      },
+      "raw_record": {
+        "ID": 3,
+        "Alloy": "6A01",
+        "Temper": "T5",
+        "Process": "Laser-CMT hybrid welding-brazing",
+        "Joint / Other material": "SUS301L-DLT stainless steel",
+        "Thickness_6A01_mm": 2.5,
+        "Filler": "ER5183",
+        "Filler_diameter_mm": 1.2,
+        "Laser_power_kW": 2,
+        "Arc_current_A": null,
+        "Wire_feed_m_min": 4.5,
+        "Welding_speed_m_min": 1.2,
+        "Gap_mm": null,
+        "Shielding_gas": null,
+        "Tensile_strength_MPa": 188.7,
+        "Fatigue_strength_MPa": null,
+        "Weld_depth_mm": null,
+        "Other_outcome": "≈77.1% of Al base-metal strength; fracture along IMC layer",
+        "Data_type": "Paper: measured optimum",
+        "Source_DOI_or_URL": "https://doi.org/10.3390/ma12223651",
+        "Notes": "Best reported combination: wire feed 4.5 m/min, laser 2.0 kW, welding speed 1.2 m/min."
+      },
+      "source_cells": {
+        "ID": "6A01_demo_dataset!A4",
+        "Alloy": "6A01_demo_dataset!B4",
+        "Temper": "6A01_demo_dataset!C4",
+        "Process": "6A01_demo_dataset!D4",
+        "Joint / Other material": "6A01_demo_dataset!E4",
+        "Thickness_6A01_mm": "6A01_demo_dataset!F4",
+        "Filler": "6A01_demo_dataset!G4",
+        "Filler_diameter_mm": "6A01_demo_dataset!H4",
+        "Laser_power_kW": "6A01_demo_dataset!I4",
+        "Arc_current_A": "6A01_demo_dataset!J4",
+        "Wire_feed_m_min": "6A01_demo_dataset!K4",
+        "Welding_speed_m_min": "6A01_demo_dataset!L4",
+        "Gap_mm": "6A01_demo_dataset!M4",
+        "Shielding_gas": "6A01_demo_dataset!N4",
+        "Tensile_strength_MPa": "6A01_demo_dataset!O4",
+        "Fatigue_strength_MPa": "6A01_demo_dataset!P4",
+        "Weld_depth_mm": "6A01_demo_dataset!Q4",
+        "Other_outcome": "6A01_demo_dataset!R4",
+        "Data_type": "6A01_demo_dataset!S4",
+        "Source_DOI_or_URL": "6A01_demo_dataset!T4",
+        "Notes": "6A01_demo_dataset!U4"
+      },
+      "notes": "Best reported combination: wire feed 4.5 m/min, laser 2.0 kW, welding speed 1.2 m/min.",
+      "other_outcome": "≈77.1% of Al base-metal strength; fracture along IMC layer",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "geometry_results": {
+        "penetration_depth": null
+      },
+      "fracture_information": {
+        "location": "IMC layer",
+        "source_cell": "6A01_demo_dataset!R4"
+      },
+      "property_record_id": "6A01-demo-property-003"
+    },
+    {
+      "id": "6A01-demo-case-004",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": 6,
+      "welding_method": "Fiber laser welding",
+      "welding_parameters": {
+        "wire_diameter": null,
+        "laser_power": {
+          "value": 4.2,
+          "unit": "kW",
+          "source_cell": "6A01_demo_dataset!I5",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "arc_current": null,
+        "wire_feed_speed": null,
+        "welding_speed": null,
+        "gap": null,
+        "filler_material": null,
+        "shielding_gas": null
+      },
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "A VMD-BP Model to Predict Laser Welding Keyhole-Induced Pore Defect in Al Butt–Lap Joint",
+        "authors": null,
+        "year": 2024,
+        "url": "https://doi.org/10.3390/ma17133270",
+        "doi": "10.3390/ma17133270",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 5,
+        "range": "A5:U5",
+        "metadata_source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11242956",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "literature_id": "6A01-demo-literature-d0e82d5b9bb6",
+      "record_kind": "paper_dataset_setting",
+      "data_type": "Paper: experiment/dataset setting",
+      "example_data": false,
+      "joint": {
+        "description": "5454-H24 butt-lap"
+      },
+      "raw_record": {
+        "ID": 4,
+        "Alloy": "6A01",
+        "Temper": null,
+        "Process": "Fiber laser welding",
+        "Joint / Other material": "5454-H24 butt-lap",
+        "Thickness_6A01_mm": 6,
+        "Filler": null,
+        "Filler_diameter_mm": null,
+        "Laser_power_kW": 4.2,
+        "Arc_current_A": null,
+        "Wire_feed_m_min": null,
+        "Welding_speed_m_min": null,
+        "Gap_mm": null,
+        "Shielding_gas": null,
+        "Tensile_strength_MPa": null,
+        "Fatigue_strength_MPa": null,
+        "Weld_depth_mm": null,
+        "Other_outcome": "Dataset used high-speed imaging to predict keyhole-induced pore defects",
+        "Data_type": "Paper: experiment/dataset setting",
+        "Source_DOI_or_URL": "https://doi.org/10.3390/ma17133270",
+        "Notes": "6A01 sheet 6 mm; 5454-H24 sheet 3 mm; laser beam diameter 300 μm; fixed laser power 4200 W."
+      },
+      "source_cells": {
+        "ID": "6A01_demo_dataset!A5",
+        "Alloy": "6A01_demo_dataset!B5",
+        "Temper": "6A01_demo_dataset!C5",
+        "Process": "6A01_demo_dataset!D5",
+        "Joint / Other material": "6A01_demo_dataset!E5",
+        "Thickness_6A01_mm": "6A01_demo_dataset!F5",
+        "Filler": "6A01_demo_dataset!G5",
+        "Filler_diameter_mm": "6A01_demo_dataset!H5",
+        "Laser_power_kW": "6A01_demo_dataset!I5",
+        "Arc_current_A": "6A01_demo_dataset!J5",
+        "Wire_feed_m_min": "6A01_demo_dataset!K5",
+        "Welding_speed_m_min": "6A01_demo_dataset!L5",
+        "Gap_mm": "6A01_demo_dataset!M5",
+        "Shielding_gas": "6A01_demo_dataset!N5",
+        "Tensile_strength_MPa": "6A01_demo_dataset!O5",
+        "Fatigue_strength_MPa": "6A01_demo_dataset!P5",
+        "Weld_depth_mm": "6A01_demo_dataset!Q5",
+        "Other_outcome": "6A01_demo_dataset!R5",
+        "Data_type": "6A01_demo_dataset!S5",
+        "Source_DOI_or_URL": "6A01_demo_dataset!T5",
+        "Notes": "6A01_demo_dataset!U5"
+      },
+      "notes": "6A01 sheet 6 mm; 5454-H24 sheet 3 mm; laser beam diameter 300 μm; fixed laser power 4200 W.",
+      "other_outcome": "Dataset used high-speed imaging to predict keyhole-induced pore defects",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "article_archive_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "geometry_results": {
+        "penetration_depth": null
+      },
+      "result_scope": "数据集实验设置，不能当作一条已测得性能或缺陷标签的独立样本。"
+    },
+    {
+      "id": "6A01-demo-case-005",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": 3,
+      "welding_method": "Laser-MIG hybrid",
+      "welding_parameters": {
+        "wire_diameter": null,
+        "laser_power": null,
+        "arc_current": null,
+        "wire_feed_speed": null,
+        "welding_speed": null,
+        "gap": {
+          "value": 0,
+          "unit": "mm",
+          "source_cell": "6A01_demo_dataset!M6",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "filler_material": {
+          "value": "ER5356",
+          "unit": null,
+          "source_cell": "6A01_demo_dataset!G6"
+        },
+        "shielding_gas": null
+      },
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "The role of horizontal gaps on metal flow and heat transfer in bottom-locking welding joints",
+        "authors": null,
+        "year": null,
+        "url": "https://doi.org/10.1016/j.ijthermalsci.2025.109785",
+        "doi": "10.1016/j.ijthermalsci.2025.109785",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 6,
+        "range": "A6:U6",
+        "metadata_source_url": "https://www.sciencedirect.com/science/article/abs/pii/S1290072925001085",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "literature_id": "6A01-demo-literature-0d75401d67b0",
+      "record_kind": "paper_measurement_or_model_validation",
+      "data_type": "Paper: measured/model validation",
+      "example_data": false,
+      "joint": {
+        "description": "Bottom-locking 6A01 joint"
+      },
+      "raw_record": {
+        "ID": 5,
+        "Alloy": "6A01",
+        "Temper": null,
+        "Process": "Laser-MIG hybrid",
+        "Joint / Other material": "Bottom-locking 6A01 joint",
+        "Thickness_6A01_mm": 3,
+        "Filler": "ER5356",
+        "Filler_diameter_mm": null,
+        "Laser_power_kW": null,
+        "Arc_current_A": null,
+        "Wire_feed_m_min": null,
+        "Welding_speed_m_min": null,
+        "Gap_mm": 0,
+        "Shielding_gas": null,
+        "Tensile_strength_MPa": null,
+        "Fatigue_strength_MPa": null,
+        "Weld_depth_mm": 3.84,
+        "Other_outcome": "Gap-free condition; higher heat flux and deeper weld",
+        "Data_type": "Paper: measured/model validation",
+        "Source_DOI_or_URL": "https://doi.org/10.1016/j.ijthermalsci.2025.109785",
+        "Notes": "Upper butt and lower locking parts both 3 mm. Same welding settings were used across gap cases."
+      },
+      "source_cells": {
+        "ID": "6A01_demo_dataset!A6",
+        "Alloy": "6A01_demo_dataset!B6",
+        "Temper": "6A01_demo_dataset!C6",
+        "Process": "6A01_demo_dataset!D6",
+        "Joint / Other material": "6A01_demo_dataset!E6",
+        "Thickness_6A01_mm": "6A01_demo_dataset!F6",
+        "Filler": "6A01_demo_dataset!G6",
+        "Filler_diameter_mm": "6A01_demo_dataset!H6",
+        "Laser_power_kW": "6A01_demo_dataset!I6",
+        "Arc_current_A": "6A01_demo_dataset!J6",
+        "Wire_feed_m_min": "6A01_demo_dataset!K6",
+        "Welding_speed_m_min": "6A01_demo_dataset!L6",
+        "Gap_mm": "6A01_demo_dataset!M6",
+        "Shielding_gas": "6A01_demo_dataset!N6",
+        "Tensile_strength_MPa": "6A01_demo_dataset!O6",
+        "Fatigue_strength_MPa": "6A01_demo_dataset!P6",
+        "Weld_depth_mm": "6A01_demo_dataset!Q6",
+        "Other_outcome": "6A01_demo_dataset!R6",
+        "Data_type": "6A01_demo_dataset!S6",
+        "Source_DOI_or_URL": "6A01_demo_dataset!T6",
+        "Notes": "6A01_demo_dataset!U6"
+      },
+      "notes": "Upper butt and lower locking parts both 3 mm. Same welding settings were used across gap cases.",
+      "other_outcome": "Gap-free condition; higher heat flux and deeper weld",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "geometry_results": {
+        "penetration_depth": {
+          "value": 3.84,
+          "unit": "mm",
+          "source_cell": "6A01_demo_dataset!Q6",
+          "verification_status": "imported_from_excel_pending_full_review"
+        }
+      },
+      "result_scope": "保留原表实测/模型验证混合标记；具体数值属于实测还是模拟需回查原图表。"
+    },
+    {
+      "id": "6A01-demo-case-006",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": 3,
+      "welding_method": "Laser-MIG hybrid",
+      "welding_parameters": {
+        "wire_diameter": null,
+        "laser_power": null,
+        "arc_current": null,
+        "wire_feed_speed": null,
+        "welding_speed": null,
+        "gap": {
+          "value": 0.8,
+          "unit": "mm",
+          "source_cell": "6A01_demo_dataset!M7",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "filler_material": {
+          "value": "ER5356",
+          "unit": null,
+          "source_cell": "6A01_demo_dataset!G7"
+        },
+        "shielding_gas": null
+      },
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "The role of horizontal gaps on metal flow and heat transfer in bottom-locking welding joints",
+        "authors": null,
+        "year": null,
+        "url": "https://doi.org/10.1016/j.ijthermalsci.2025.109785",
+        "doi": "10.1016/j.ijthermalsci.2025.109785",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 7,
+        "range": "A7:U7",
+        "metadata_source_url": "https://www.sciencedirect.com/science/article/abs/pii/S1290072925001085",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "literature_id": "6A01-demo-literature-0d75401d67b0",
+      "record_kind": "paper_measurement_or_model_validation",
+      "data_type": "Paper: measured/model validation",
+      "example_data": false,
+      "joint": {
+        "description": "Bottom-locking 6A01 joint"
+      },
+      "raw_record": {
+        "ID": 6,
+        "Alloy": "6A01",
+        "Temper": null,
+        "Process": "Laser-MIG hybrid",
+        "Joint / Other material": "Bottom-locking 6A01 joint",
+        "Thickness_6A01_mm": 3,
+        "Filler": "ER5356",
+        "Filler_diameter_mm": null,
+        "Laser_power_kW": null,
+        "Arc_current_A": null,
+        "Wire_feed_m_min": null,
+        "Welding_speed_m_min": null,
+        "Gap_mm": 0.8,
+        "Shielding_gas": null,
+        "Tensile_strength_MPa": null,
+        "Fatigue_strength_MPa": null,
+        "Weld_depth_mm": 2.93,
+        "Other_outcome": "Penetration fell below 3 mm design requirement",
+        "Data_type": "Paper: measured/model validation",
+        "Source_DOI_or_URL": "https://doi.org/10.1016/j.ijthermalsci.2025.109785",
+        "Notes": "Horizontal gap increased from 0 to 0.8 mm; weld depth dropped from 3.84 to 2.93 mm."
+      },
+      "source_cells": {
+        "ID": "6A01_demo_dataset!A7",
+        "Alloy": "6A01_demo_dataset!B7",
+        "Temper": "6A01_demo_dataset!C7",
+        "Process": "6A01_demo_dataset!D7",
+        "Joint / Other material": "6A01_demo_dataset!E7",
+        "Thickness_6A01_mm": "6A01_demo_dataset!F7",
+        "Filler": "6A01_demo_dataset!G7",
+        "Filler_diameter_mm": "6A01_demo_dataset!H7",
+        "Laser_power_kW": "6A01_demo_dataset!I7",
+        "Arc_current_A": "6A01_demo_dataset!J7",
+        "Wire_feed_m_min": "6A01_demo_dataset!K7",
+        "Welding_speed_m_min": "6A01_demo_dataset!L7",
+        "Gap_mm": "6A01_demo_dataset!M7",
+        "Shielding_gas": "6A01_demo_dataset!N7",
+        "Tensile_strength_MPa": "6A01_demo_dataset!O7",
+        "Fatigue_strength_MPa": "6A01_demo_dataset!P7",
+        "Weld_depth_mm": "6A01_demo_dataset!Q7",
+        "Other_outcome": "6A01_demo_dataset!R7",
+        "Data_type": "6A01_demo_dataset!S7",
+        "Source_DOI_or_URL": "6A01_demo_dataset!T7",
+        "Notes": "6A01_demo_dataset!U7"
+      },
+      "notes": "Horizontal gap increased from 0 to 0.8 mm; weld depth dropped from 3.84 to 2.93 mm.",
+      "other_outcome": "Penetration fell below 3 mm design requirement",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "geometry_results": {
+        "penetration_depth": {
+          "value": 2.93,
+          "unit": "mm",
+          "source_cell": "6A01_demo_dataset!Q7",
+          "verification_status": "imported_from_excel_pending_full_review"
+        }
+      },
+      "result_scope": "保留原表实测/模型验证混合标记；具体数值属于实测还是模拟需回查原图表。"
+    },
+    {
+      "id": "6A01-demo-case-007",
+      "alloy": "6A01",
+      "temper": "T5",
+      "chemical_composition": null,
+      "thickness_mm": 3,
+      "welding_method": "Laser-CMT + mechanical vibration",
+      "welding_parameters": {
+        "wire_diameter": {
+          "value": 1.2,
+          "unit": "mm",
+          "source_cell": "6A01_demo_dataset!H8",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "laser_power": {
+          "value": 3,
+          "unit": "kW",
+          "source_cell": "6A01_demo_dataset!I8",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "arc_current": {
+          "value": 159,
+          "unit": "A",
+          "source_cell": "6A01_demo_dataset!J8",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "wire_feed_speed": null,
+        "welding_speed": {
+          "value": 3,
+          "unit": "m/min",
+          "source_cell": "6A01_demo_dataset!L8",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "gap": null,
+        "filler_material": {
+          "value": "ER5356",
+          "unit": null,
+          "source_cell": "6A01_demo_dataset!G8"
+        },
+        "shielding_gas": {
+          "value": "High-purity Ar, 20 L/min",
+          "unit": null,
+          "source_cell": "6A01_demo_dataset!N8"
+        }
+      },
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": {
+        "type": "porosity",
+        "inspection_method": "X-ray",
+        "observation": "Mechanical vibration markedly reduced internal porosity by X-ray inspection",
+        "porosity_fraction": null,
+        "source_cell": "6A01_demo_dataset!R8"
+      },
+      "source": {
+        "title": "激光CMT复合焊接系统、焊接方法及铝合金车体焊接构件",
+        "authors": null,
+        "year": 2019,
+        "url": "https://patents.google.com/patent/CN110293321A/zh",
+        "doi": null,
+        "report_id": "CN110293321A",
+        "page": null,
+        "publication_type": "patent",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 8,
+        "range": "A8:U8",
+        "metadata_source_url": "https://patents.google.com/patent/CN110293321A/zh",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。",
+        "inventors": [
+          "韩晓辉",
+          "马寅",
+          "杨志斌",
+          "李帅贞"
+        ]
+      },
+      "literature_id": "6A01-demo-literature-a71a8011bc75",
+      "record_kind": "patent_example",
+      "data_type": "Patent: example",
+      "example_data": true,
+      "joint": {
+        "description": "6A01/6A01"
+      },
+      "raw_record": {
+        "ID": 7,
+        "Alloy": "6A01",
+        "Temper": "T5",
+        "Process": "Laser-CMT + mechanical vibration",
+        "Joint / Other material": "6A01/6A01",
+        "Thickness_6A01_mm": 3,
+        "Filler": "ER5356",
+        "Filler_diameter_mm": 1.2,
+        "Laser_power_kW": 3,
+        "Arc_current_A": 159,
+        "Wire_feed_m_min": null,
+        "Welding_speed_m_min": 3,
+        "Gap_mm": null,
+        "Shielding_gas": "High-purity Ar, 20 L/min",
+        "Tensile_strength_MPa": null,
+        "Fatigue_strength_MPa": null,
+        "Weld_depth_mm": null,
+        "Other_outcome": "Mechanical vibration markedly reduced internal porosity by X-ray inspection",
+        "Data_type": "Patent: example",
+        "Source_DOI_or_URL": "https://patents.google.com/patent/CN110293321A/zh",
+        "Notes": "Heat-source spacing 3 mm; defocus 0 mm. Useful as auxiliary evidence, but patent data should be tagged separately from peer-reviewed data."
+      },
+      "source_cells": {
+        "ID": "6A01_demo_dataset!A8",
+        "Alloy": "6A01_demo_dataset!B8",
+        "Temper": "6A01_demo_dataset!C8",
+        "Process": "6A01_demo_dataset!D8",
+        "Joint / Other material": "6A01_demo_dataset!E8",
+        "Thickness_6A01_mm": "6A01_demo_dataset!F8",
+        "Filler": "6A01_demo_dataset!G8",
+        "Filler_diameter_mm": "6A01_demo_dataset!H8",
+        "Laser_power_kW": "6A01_demo_dataset!I8",
+        "Arc_current_A": "6A01_demo_dataset!J8",
+        "Wire_feed_m_min": "6A01_demo_dataset!K8",
+        "Welding_speed_m_min": "6A01_demo_dataset!L8",
+        "Gap_mm": "6A01_demo_dataset!M8",
+        "Shielding_gas": "6A01_demo_dataset!N8",
+        "Tensile_strength_MPa": "6A01_demo_dataset!O8",
+        "Fatigue_strength_MPa": "6A01_demo_dataset!P8",
+        "Weld_depth_mm": "6A01_demo_dataset!Q8",
+        "Other_outcome": "6A01_demo_dataset!R8",
+        "Data_type": "6A01_demo_dataset!S8",
+        "Source_DOI_or_URL": "6A01_demo_dataset!T8",
+        "Notes": "6A01_demo_dataset!U8"
+      },
+      "notes": "Heat-source spacing 3 mm; defocus 0 mm. Useful as auxiliary evidence, but patent data should be tagged separately from peer-reviewed data.",
+      "other_outcome": "Mechanical vibration markedly reduced internal porosity by X-ray inspection",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "patent_page_read_example_located",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "geometry_results": {
+        "penetration_depth": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Welding experiment normalized record",
+  "schema_version": "1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "alloy",
+    "temper",
+    "thickness",
+    "process",
+    "current",
+    "voltage",
+    "speed",
+    "heat_input",
+    "tensile_strength",
+    "hardness",
+    "elongation",
+    "porosity",
+    "crack",
+    "undercut",
+    "paper",
+    "experiment_id",
+    "source",
+    "record_kind"
+  ],
+  "properties": {
+    "alloy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "temper": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "thickness": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "mm",
+      "exclusiveMinimum": 0
+    },
+    "process": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "A",
+      "minimum": 0
+    },
+    "voltage": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "V",
+      "minimum": 0
+    },
+    "speed": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "mm/s",
+      "exclusiveMinimum": 0
+    },
+    "heat_input": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "kJ/mm",
+      "minimum": 0
+    },
+    "tensile_strength": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "MPa",
+      "exclusiveMinimum": 0
+    },
+    "hardness": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "HV",
+      "exclusiveMinimum": 0
+    },
+    "elongation": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "%",
+      "minimum": 0
+    },
+    "porosity": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "%",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "crack": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "present",
+        "absent",
+        "unknown",
+        null
+      ]
+    },
+    "undercut": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "x-unit": "mm",
+      "minimum": 0
+    },
+    "paper": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "experiment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_kind": {
+      "enum": [
+        "experimental",
+        "schema_test"
+      ]
+    }
+  }
+}

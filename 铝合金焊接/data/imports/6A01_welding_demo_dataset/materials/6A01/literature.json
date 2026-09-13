@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0",
+  "record_template": {
+    "id": null,
+    "alloy": null,
+    "temper": null,
+    "chemical_composition": null,
+    "thickness_mm": null,
+    "welding_method": null,
+    "welding_parameters": null,
+    "microstructure": null,
+    "mechanical_properties": null,
+    "defects": null,
+    "source": {
+      "title": null,
+      "authors": null,
+      "year": null,
+      "url": null,
+      "doi": null,
+      "report_id": null,
+      "page": null,
+      "file_path": null,
+      "note": null
+    },
+    "title": null,
+    "summary": null
+  },
+  "import_status": "review_only_not_loaded_by_app",
+  "records": [
+    {
+      "id": "6A01-demo-literature-480f23db3025",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": null,
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "Microstructures and fatigue behavior of metal-inert-gas-welded joints for extruded Al-Mg-Si alloy",
+        "authors": null,
+        "year": 2019,
+        "url": "https://doi.org/10.1016/j.msea.2018.12.080",
+        "doi": "10.1016/j.msea.2018.12.080",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "metadata_source_url": "https://www.sciencedirect.com/science/article/abs/pii/S092150931831757X",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "title": "Microstructures and fatigue behavior of metal-inert-gas-welded joints for extruded Al-Mg-Si alloy",
+      "publication_type": "journal_article",
+      "case_ids": [
+        "6A01-demo-case-001"
+      ],
+      "spreadsheet_rows": [
+        2
+      ],
+      "data_types": [
+        "Paper: measured"
+      ],
+      "welding_methods": [
+        "MIG"
+      ],
+      "summary": null,
+      "verification": {
+        "status": "source_identified_data_pending_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "full_text_data_review_complete": false
+      },
+      "metadata_provenance": {
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S092150931831757X",
+        "note": "出版社搜索结果可确认 DOI、标题、发表年份；没有完整核对全部参数。"
+      }
+    },
+    {
+      "id": "6A01-demo-literature-a1c25132b982",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": null,
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "高速列车用铝合金型材激光-MIG复合焊工艺特性和接头性能",
+        "authors": [
+          "马国龙",
+          "张志毅",
+          "毛镇东",
+          "李刚卿",
+          "韩晓辉",
+          "杨志斌"
+        ],
+        "year": 2023,
+        "url": "https://doi.org/10.11896/cldb.21110142",
+        "doi": "10.11896/cldb.21110142",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "metadata_source_url": "https://www.mater-rep.com/CN/10.11896/cldb.21110142",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "title": "高速列车用铝合金型材激光-MIG复合焊工艺特性和接头性能",
+      "publication_type": "journal_article",
+      "case_ids": [
+        "6A01-demo-case-002"
+      ],
+      "spreadsheet_rows": [
+        3
+      ],
+      "data_types": [
+        "Paper: measured"
+      ],
+      "welding_methods": [
+        "Laser-MIG hybrid"
+      ],
+      "summary": null,
+      "verification": {
+        "status": "source_identified_data_pending_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "full_text_data_review_complete": false
+      },
+      "metadata_provenance": {
+        "url": "https://www.mater-rep.com/CN/10.11896/cldb.21110142",
+        "note": "中文期刊摘要可对应材料、厚度及性能摘要；疲劳试验条件和工艺表仍待全文核对。"
+      }
+    },
+    {
+      "id": "6A01-demo-literature-f4f477b01867",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": null,
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "Laser-CMT Hybrid Welding-Brazing of Al/Steel Butt Joint: Weld Formation, Intermetallic Compounds, and Mechanical Properties",
+        "authors": [
+          "Yuxin Chen",
+          "Zhibin Yang",
+          "Chunyuan Shi",
+          "Zhibin Xin",
+          "Zitong Zeng"
+        ],
+        "year": 2019,
+        "url": "https://doi.org/10.3390/ma12223651",
+        "doi": "10.3390/ma12223651",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "metadata_source_url": "https://www.mdpi.com/1996-1944/12/22/3651/htm",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "title": "Laser-CMT Hybrid Welding-Brazing of Al/Steel Butt Joint: Weld Formation, Intermetallic Compounds, and Mechanical Properties",
+      "publication_type": "journal_article",
+      "case_ids": [
+        "6A01-demo-case-003"
+      ],
+      "spreadsheet_rows": [
+        4
+      ],
+      "data_types": [
+        "Paper: measured optimum"
+      ],
+      "welding_methods": [
+        "Laser-CMT hybrid welding-brazing"
+      ],
+      "summary": null,
+      "verification": {
+        "status": "source_identified_data_pending_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "full_text_data_review_complete": false
+      },
+      "metadata_provenance": {
+        "url": "https://www.mdpi.com/1996-1944/12/22/3651/htm",
+        "note": "出版社索引书目信息匹配。DOI 和网页直接读取受限；未逐项审核实验表格。"
+      }
+    },
+    {
+      "id": "6A01-demo-literature-d0e82d5b9bb6",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": null,
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "A VMD-BP Model to Predict Laser Welding Keyhole-Induced Pore Defect in Al Butt–Lap Joint",
+        "authors": null,
+        "year": 2024,
+        "url": "https://doi.org/10.3390/ma17133270",
+        "doi": "10.3390/ma17133270",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "metadata_source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11242956",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "title": "A VMD-BP Model to Predict Laser Welding Keyhole-Induced Pore Defect in Al Butt–Lap Joint",
+      "publication_type": "journal_article",
+      "case_ids": [
+        "6A01-demo-case-004"
+      ],
+      "spreadsheet_rows": [
+        5
+      ],
+      "data_types": [
+        "Paper: experiment/dataset setting"
+      ],
+      "welding_methods": [
+        "Fiber laser welding"
+      ],
+      "summary": null,
+      "verification": {
+        "status": "source_identified_data_pending_review",
+        "source_identity": "article_archive_search_metadata_matched",
+        "full_text_data_review_complete": false
+      },
+      "metadata_provenance": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11242956",
+        "note": "PMC 论文索引可对应标题、年份和 DOI。这里只建立数据集设置记录，不推断单次实验结果。"
+      }
+    },
+    {
+      "id": "6A01-demo-literature-0d75401d67b0",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": null,
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "The role of horizontal gaps on metal flow and heat transfer in bottom-locking welding joints",
+        "authors": null,
+        "year": null,
+        "url": "https://doi.org/10.1016/j.ijthermalsci.2025.109785",
+        "doi": "10.1016/j.ijthermalsci.2025.109785",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "metadata_source_url": "https://www.sciencedirect.com/science/article/abs/pii/S1290072925001085",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "title": "The role of horizontal gaps on metal flow and heat transfer in bottom-locking welding joints",
+      "publication_type": "journal_article",
+      "case_ids": [
+        "6A01-demo-case-005",
+        "6A01-demo-case-006"
+      ],
+      "spreadsheet_rows": [
+        6,
+        7
+      ],
+      "data_types": [
+        "Paper: measured/model validation"
+      ],
+      "welding_methods": [
+        "Laser-MIG hybrid"
+      ],
+      "summary": null,
+      "verification": {
+        "status": "source_identified_data_pending_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "full_text_data_review_complete": false
+      },
+      "metadata_provenance": {
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S1290072925001085",
+        "note": "出版社公开片段包含实验及数值模拟；同 DOI 的两个间隙条件关联到同一文献。熔深数值对应实测还是模型结果仍需回查图表。"
+      }
+    },
+    {
+      "id": "6A01-demo-literature-a71a8011bc75",
+      "alloy": "6A01",
+      "temper": null,
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": null,
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": null,
+      "defects": null,
+      "source": {
+        "title": "激光CMT复合焊接系统、焊接方法及铝合金车体焊接构件",
+        "authors": null,
+        "year": 2019,
+        "url": "https://patents.google.com/patent/CN110293321A/zh",
+        "doi": null,
+        "report_id": "CN110293321A",
+        "page": null,
+        "publication_type": "patent",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "metadata_source_url": "https://patents.google.com/patent/CN110293321A/zh",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。",
+        "inventors": [
+          "韩晓辉",
+          "马寅",
+          "杨志斌",
+          "李帅贞"
+        ]
+      },
+      "title": "激光CMT复合焊接系统、焊接方法及铝合金车体焊接构件",
+      "publication_type": "patent",
+      "case_ids": [
+        "6A01-demo-case-007"
+      ],
+      "spreadsheet_rows": [
+        8
+      ],
+      "data_types": [
+        "Patent: example"
+      ],
+      "welding_methods": [
+        "Laser-CMT + mechanical vibration"
+      ],
+      "summary": null,
+      "verification": {
+        "status": "source_identified_data_pending_review",
+        "source_identity": "patent_page_read_example_located",
+        "full_text_data_review_complete": false
+      },
+      "metadata_provenance": {
+        "url": "https://patents.google.com/patent/CN110293321A/zh",
+        "note": "已定位实施例2中的具体参数与 X 射线定性描述。保留为专利实施例，不能因此标为同行评议论文或已批准工艺。"
+      }
+    }
+  ]
+}

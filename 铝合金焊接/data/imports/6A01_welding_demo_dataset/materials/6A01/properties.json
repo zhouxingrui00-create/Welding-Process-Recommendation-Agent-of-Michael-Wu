@@ -1,0 +1,220 @@
+{
+  "schema_version": "1.0",
+  "record_template": {
+    "id": null,
+    "alloy": null,
+    "temper": null,
+    "chemical_composition": null,
+    "thickness_mm": null,
+    "welding_method": null,
+    "welding_parameters": null,
+    "microstructure": null,
+    "mechanical_properties": null,
+    "defects": null,
+    "source": {
+      "title": null,
+      "authors": null,
+      "year": null,
+      "url": null,
+      "doi": null,
+      "report_id": null,
+      "page": null,
+      "file_path": null,
+      "note": null
+    }
+  },
+  "import_status": "review_only_not_loaded_by_app",
+  "records": [
+    {
+      "id": "6A01-demo-property-001",
+      "alloy": "6A01",
+      "temper": "T5",
+      "chemical_composition": null,
+      "thickness_mm": null,
+      "welding_method": "MIG",
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": {
+        "tensile_strength": {
+          "value": 210.3,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!O2",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "fatigue_strength": {
+          "value": 61.7,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!P2",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "test_conditions": {
+          "standard": null,
+          "stress_ratio": null,
+          "cycles": null,
+          "sample_count": null,
+          "loading_mode": null
+        }
+      },
+      "defects": null,
+      "source": {
+        "title": "Microstructures and fatigue behavior of metal-inert-gas-welded joints for extruded Al-Mg-Si alloy",
+        "authors": null,
+        "year": 2019,
+        "url": "https://doi.org/10.1016/j.msea.2018.12.080",
+        "doi": "10.1016/j.msea.2018.12.080",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 2,
+        "range": "A2:U2",
+        "metadata_source_url": "https://www.sciencedirect.com/science/article/abs/pii/S092150931831757X",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "case_id": "6A01-demo-case-001",
+      "literature_id": "6A01-demo-literature-480f23db3025",
+      "record_kind": "case_property_extract",
+      "data_type": "Paper: measured",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "note": "关联案例的同一组性能摘录，不是独立新增实验；按 case_id 去重。"
+    },
+    {
+      "id": "6A01-demo-property-002",
+      "alloy": "6A01",
+      "temper": "T5",
+      "chemical_composition": null,
+      "thickness_mm": 3,
+      "welding_method": "Laser-MIG hybrid",
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": {
+        "tensile_strength": {
+          "value": 197.5,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!O3",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "fatigue_strength": {
+          "value": 93.5,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!P3",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "test_conditions": {
+          "standard": null,
+          "stress_ratio": null,
+          "cycles": null,
+          "sample_count": null,
+          "loading_mode": null
+        }
+      },
+      "defects": null,
+      "source": {
+        "title": "高速列车用铝合金型材激光-MIG复合焊工艺特性和接头性能",
+        "authors": [
+          "马国龙",
+          "张志毅",
+          "毛镇东",
+          "李刚卿",
+          "韩晓辉",
+          "杨志斌"
+        ],
+        "year": 2023,
+        "url": "https://doi.org/10.11896/cldb.21110142",
+        "doi": "10.11896/cldb.21110142",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 3,
+        "range": "A3:U3",
+        "metadata_source_url": "https://www.mater-rep.com/CN/10.11896/cldb.21110142",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "case_id": "6A01-demo-case-002",
+      "literature_id": "6A01-demo-literature-a1c25132b982",
+      "record_kind": "case_property_extract",
+      "data_type": "Paper: measured",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "note": "关联案例的同一组性能摘录，不是独立新增实验；按 case_id 去重。"
+    },
+    {
+      "id": "6A01-demo-property-003",
+      "alloy": "6A01",
+      "temper": "T5",
+      "chemical_composition": null,
+      "thickness_mm": 2.5,
+      "welding_method": "Laser-CMT hybrid welding-brazing",
+      "welding_parameters": null,
+      "microstructure": null,
+      "mechanical_properties": {
+        "tensile_strength": {
+          "value": 188.7,
+          "unit": "MPa",
+          "source_cell": "6A01_demo_dataset!O4",
+          "verification_status": "imported_from_excel_pending_full_review"
+        },
+        "fatigue_strength": null,
+        "test_conditions": {
+          "standard": null,
+          "stress_ratio": null,
+          "cycles": null,
+          "sample_count": null,
+          "loading_mode": null
+        }
+      },
+      "defects": null,
+      "source": {
+        "title": "Laser-CMT Hybrid Welding-Brazing of Al/Steel Butt Joint: Weld Formation, Intermetallic Compounds, and Mechanical Properties",
+        "authors": [
+          "Yuxin Chen",
+          "Zhibin Yang",
+          "Chunyuan Shi",
+          "Zhibin Xin",
+          "Zitong Zeng"
+        ],
+        "year": 2019,
+        "url": "https://doi.org/10.3390/ma12223651",
+        "doi": "10.3390/ma12223651",
+        "report_id": null,
+        "page": null,
+        "publication_type": "journal_article",
+        "file_path": "data/imports/6A01_welding_demo_dataset/source/6A01_welding_demo_dataset.xlsx",
+        "file_sha256": "a45924b39db8450812962810258c04dc7d2301a5591280c9943a48f15609808f",
+        "sheet": "6A01_demo_dataset",
+        "row": 4,
+        "range": "A4:U4",
+        "metadata_source_url": "https://www.mdpi.com/1996-1944/12/22/3651/htm",
+        "note": "数值直接来自指定 Excel，文献书目信息另经公开来源匹配；尚未完成逐字段全文审核。"
+      },
+      "case_id": "6A01-demo-case-003",
+      "literature_id": "6A01-demo-literature-f4f477b01867",
+      "record_kind": "case_property_extract",
+      "data_type": "Paper: measured optimum",
+      "verification": {
+        "status": "pending_full_review",
+        "source_identity": "publisher_search_metadata_matched",
+        "all_numeric_fields_verified": false,
+        "eligible_for_recommendation": false,
+        "eligible_for_training": false
+      },
+      "note": "关联案例的同一组性能摘录，不是独立新增实验；按 case_id 去重。"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "scope": "仅核对来源标识与部分公开内容。测量值仍按 Excel 导入；未进行逐项全文、图表与试验条件审核。",
+  "records": [
+    {
+      "key": "10.1016/j.msea.2018.12.080",
+      "title": "Microstructures and fatigue behavior of metal-inert-gas-welded joints for extruded Al-Mg-Si alloy",
+      "year": 2019,
+      "authors": null,
+      "checked_url": "https://www.sciencedirect.com/science/article/abs/pii/S092150931831757X",
+      "status": "publisher_search_metadata_matched",
+      "note": "出版社搜索结果可确认 DOI、标题、发表年份；没有完整核对全部参数。"
+    },
+    {
+      "key": "10.11896/cldb.21110142",
+      "title": "高速列车用铝合金型材激光-MIG复合焊工艺特性和接头性能",
+      "year": 2023,
+      "authors": ["马国龙", "张志毅", "毛镇东", "李刚卿", "韩晓辉", "杨志斌"],
+      "checked_url": "https://www.mater-rep.com/CN/10.11896/cldb.21110142",
+      "status": "publisher_search_metadata_matched",
+      "note": "中文期刊摘要可对应材料、厚度及性能摘要；疲劳试验条件和工艺表仍待全文核对。"
+    },
+    {
+      "key": "10.3390/ma12223651",
+      "title": "Laser-CMT Hybrid Welding-Brazing of Al/Steel Butt Joint: Weld Formation, Intermetallic Compounds, and Mechanical Properties",
+      "year": 2019,
+      "authors": ["Yuxin Chen", "Zhibin Yang", "Chunyuan Shi", "Zhibin Xin", "Zitong Zeng"],
+      "checked_url": "https://www.mdpi.com/1996-1944/12/22/3651/htm",
+      "status": "publisher_search_metadata_matched",
+      "note": "出版社索引书目信息匹配。DOI 和网页直接读取受限；未逐项审核实验表格。"
+    },
+    {
+      "key": "10.3390/ma17133270",
+      "title": "A VMD-BP Model to Predict Laser Welding Keyhole-Induced Pore Defect in Al Butt–Lap Joint",
+      "year": 2024,
+      "authors": null,
+      "checked_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11242956",
+      "status": "article_archive_search_metadata_matched",
+      "note": "PMC 论文索引可对应标题、年份和 DOI。这里只建立数据集设置记录，不推断单次实验结果。"
+    },
+    {
+      "key": "10.1016/j.ijthermalsci.2025.109785",
+      "title": "The role of horizontal gaps on metal flow and heat transfer in bottom-locking welding joints",
+      "year": null,
+      "authors": null,
+      "checked_url": "https://www.sciencedirect.com/science/article/abs/pii/S1290072925001085",
+      "status": "publisher_search_metadata_matched",
+      "note": "出版社公开片段包含实验及数值模拟；同 DOI 的两个间隙条件关联到同一文献。熔深数值对应实测还是模型结果仍需回查图表。"
+    },
+    {
+      "key": "CN110293321A",
+      "title": "激光CMT复合焊接系统、焊接方法及铝合金车体焊接构件",
+      "year": 2019,
+      "authors": null,
+      "inventors": ["韩晓辉", "马寅", "杨志斌", "李帅贞"],
+      "checked_url": "https://patents.google.com/patent/CN110293321A/zh",
+      "status": "patent_page_read_example_located",
+      "note": "已定位实施例2中的具体参数与 X 射线定性描述。保留为专利实施例，不能因此标为同行评议论文或已批准工艺。"
+    }
+  ]
+}
