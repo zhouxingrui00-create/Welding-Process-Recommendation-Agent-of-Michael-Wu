@@ -600,7 +600,17 @@ python scripts\import_knowledge.py
 
 Demo 只有一条无测量值的结构测试记录，重复导入会被拦截。检查而不写入时增加 `--dry-run`；完整验收结果见 [DATA_MANAGER_TEST_REPORT.md](DATA_MANAGER_TEST_REPORT.md)。
 
-## 十五、后续扩展建议（不属于当前数据基础设施阶段）
+## 十五、机器学习预测模块框架
+
+新增 `modeling/` 和侧边栏 **模型管理**。统一支持未来 Random Forest、XGBoost、Gaussian Process、MLP 的训练、保存、评价和预测接口；记录模型版本、特征、目标、训练时间、数据版本与指标。
+
+**本阶段不训练真实模型，不生成虚假实验数据。** 训练入口默认关闭，页面训练按钮禁用。没有模型时显示“暂无训练模型”；`from agent.ml_interface import predict; predict({})` 返回 `no_model`，预测性能为空、置信度不可用。模型预测暂不自动并入现有工艺推荐结果。
+
+详细说明及未来接入方式见 [modeling/README.md](modeling/README.md)。可选训练依赖单独列在 `requirements-modeling.txt`，当前空数据运行无需安装。
+
+空数据验收与回归测试结果见 [MODELING_TEST_REPORT.md](MODELING_TEST_REPORT.md)：新增 37 项专项测试，全项目 175 项测试通过。
+
+## 十六、后续扩展建议
 
 保持第一版稳定后，再按真实研究需求逐步增加：
 
@@ -608,5 +618,5 @@ Demo 只有一条无测量值的结构测试记录，重复导入会被拦截。
 2. 给数据增加版本、审核状态、有效期和适用标准版本。
 3. 用本地中文 embedding + FAISS/Chroma 替换哈希检索。
 4. 增加 OCR 管道和文档重复/冲突检测。
-5. 实现 `agent/ml_interface.py` 的预测器，但预测结果必须与数据库参数分区显示，并给出不确定度和训练数据范围。
+5. 收集经核验的真实实验数据后，启用 `modeling/train.py` 并校准不确定性；再将预测结果与数据库参数分区展示。
 6. 增加用户角色、项目号、审核签名和不可篡改导出报告。
