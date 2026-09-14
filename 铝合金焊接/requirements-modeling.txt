@@ -1,0 +1,4 @@
+# Optional: needed only for future explicit training or loading trained models.
+-r requirements.txt
+scikit-learn>=1.4,<2
+xgboost>=2.0,<4

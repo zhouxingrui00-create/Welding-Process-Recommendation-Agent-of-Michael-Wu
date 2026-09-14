@@ -65,6 +65,7 @@ with st.sidebar:
         st.page_link("pages/1_模型设置.py", label="模型设置 / 测试连接", icon="⚙️")
     st.page_link("pages/2_6A01专项分析.py", label="6A01专项分析")
     st.page_link("pages/3_科研数据管理.py", label="科研数据管理", icon="🗃️")
+    st.page_link("pages/4_模型管理.py", label="模型管理", icon="📈")
 
 if submitted:
     try:
