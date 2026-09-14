@@ -141,3 +141,13 @@
 {"started_at": "2026-09-12T14:36:25.051+08:00", "provider": "openai-compatible", "model": "cloud-test", "operation": "generate", "success": true, "elapsed_ms": 0.05, "error_code": ""}
 {"started_at": "2026-09-12T14:50:52.736+08:00", "provider": "openai-compatible", "model": "qwen3.8-max", "operation": "connection_test", "success": true, "elapsed_ms": 1491.73, "error_code": ""}
 {"started_at": "2026-09-12T14:50:54.229+08:00", "provider": "ollama", "model": "qwen2.5:7b-instruct-q4_K_M", "operation": "connection_test", "success": false, "elapsed_ms": 2050.87, "error_code": "network"}
+{"started_at": "2026-09-13T20:33:00.714+08:00", "provider": "openai-compatible", "model": "qwen3.8-max", "operation": "generate", "success": false, "elapsed_ms": 0.18, "error_code": "network"}
+{"started_at": "2026-09-13T20:33:00.715+08:00", "provider": "ollama", "model": "qwen2.5:7b-instruct-q4_K_M", "operation": "generate", "success": false, "elapsed_ms": 0.05, "error_code": "network"}
+{"started_at": "2026-09-13T20:33:00.824+08:00", "provider": "openai-compatible", "model": "qwen3.8-max", "operation": "connection_test", "success": false, "elapsed_ms": 0.04, "error_code": "network"}
+{"started_at": "2026-09-13T20:33:00.826+08:00", "provider": "ollama", "model": "qwen2.5:7b-instruct-q4_K_M", "operation": "connection_test", "success": false, "elapsed_ms": 0.04, "error_code": "network"}
+{"started_at": "2026-09-13T20:33:00.954+08:00", "provider": "openai-compatible", "model": "cloud-test", "operation": "generate", "success": true, "elapsed_ms": 0.1, "error_code": ""}
+{"started_at": "2026-09-13T20:33:00.988+08:00", "provider": "openai-compatible", "model": "cloud-test", "operation": "connection_test", "success": true, "elapsed_ms": 0.09, "error_code": ""}
+{"started_at": "2026-09-13T20:33:00.988+08:00", "provider": "ollama", "model": "qwen2.5:7b-instruct-q4_K_M", "operation": "connection_test", "success": true, "elapsed_ms": 0.07, "error_code": ""}
+{"started_at": "2026-09-13T20:33:01.133+08:00", "provider": "openai-compatible", "model": "cloud-test", "operation": "generate", "success": false, "elapsed_ms": 0.02, "error_code": "timeout"}
+{"started_at": "2026-09-13T20:33:01.133+08:00", "provider": "ollama", "model": "qwen2.5:7b-instruct-q4_K_M", "operation": "generate", "success": false, "elapsed_ms": 0.02, "error_code": "network"}
+{"started_at": "2026-09-13T20:33:01.208+08:00", "provider": "openai-compatible", "model": "cloud-test", "operation": "generate", "success": true, "elapsed_ms": 0.06, "error_code": ""}

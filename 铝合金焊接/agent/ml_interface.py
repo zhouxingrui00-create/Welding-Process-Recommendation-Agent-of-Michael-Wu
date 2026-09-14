@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from typing import Protocol
 
-from agent.models import WeldingRequest
+from modeling.predict import WeldingPredictor, predict
 
 
 class ProcessPredictionModel(Protocol):
-    """未来工艺参数预测模型的稳定接口；第一版不提供实现。"""
+    """焊接参数（科研 Schema 标准单位）→ 力学性能的统一 Agent 接口。"""
 
-    def predict(self, request: WeldingRequest) -> dict:
+    def predict(self, welding_parameters: Mapping) -> dict:
         ...
 
+
+__all__ = ["ProcessPredictionModel", "WeldingPredictor", "predict"]
